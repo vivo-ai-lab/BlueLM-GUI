@@ -91,7 +91,7 @@ Each task record contains the following fields:
 ## Access
 
 - **Hugging Face**: [vivo-ai/MobileGUI-VBench](https://huggingface.co/datasets/vivo-ai/MobileGUI-VBench)
-- **GitHub**: [BlueLM-GUI/MobileGUI-VBench](https://github.com/vivo-ai/BlueLM-GUI/tree/main/MobileGUI-VBench)
+- **GitHub**: [BlueLM-GUI/MobileGUI-VBench](https://github.com/vivo-ai-lab/BlueLM-GUI/tree/main/MobileGUI-VBench)
 
 ## Citation
 
