@@ -6,6 +6,7 @@
 
 [![arXiv](https://img.shields.io/badge/arXiv-2609.12394-b31b1b.svg)](https://arxiv.org/abs/2609.12394)
 [![License](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](LICENSE)
+[![Hugging Face](https://img.shields.io/badge/Hugging%20Face-MobileGUI--VBench-orange.svg)](https://huggingface.co/datasets/vivo-ai/MobileGUI-VBench)
 
 **vivo AI Lab**
 
@@ -64,7 +65,7 @@ Key features:
 - Explicit, implicit, and ambiguous instruction types
 - 77 distinct function points across 13 annotated dimensions
 
-> 📄 See [MobileGUI-VBench/](MobileGUI-VBench/) for the full dataset and [documentation](MobileGUI-VBench/MobileGUI-VBench-Doc.md). The dataset is also available on Hugging Face: [vivo-ai/MobileGUI-VBench](https://huggingface.co/datasets/vivo-ai/MobileGUI-VBench).
+> 📄 See [MobileGUI-VBench/](MobileGUI-VBench/) for the full dataset and [documentation](MobileGUI-VBench/MobileGUI-VBench-Doc.md).
 
 ### 2. AndroidWorld (Public)
 
