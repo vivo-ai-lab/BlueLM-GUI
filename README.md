@@ -48,7 +48,7 @@ BlueLM-GUI is a lightweight yet powerful multimodal GUI agent capable of autonom
 | MAI-UI-235B-A22B | 235B-A22B | - | 76.7 | Closed |
 | Step-GUI | 8B | - | 80.2 | Closed |
 
-> The same table is available at [`assets/model_benchmark_table.md`](assets/model_benchmark_table.md).
+> The same table is available at [`MobileGUI-VBench/MobileGUI-VBench_table.md`](MobileGUI-VBench/MobileGUI-VBench_table.md).
 
 ## 📊 Benchmarks
 
@@ -80,10 +80,10 @@ BlueLM-GUI/
 ├── LICENSE                                  # Apache 2.0
 ├── README.md
 ├── assets/
-│   ├── model_benchmark_table.md             # Full benchmark comparison table
-│   ├── BlueLM-GUI_overview.pdf              # Overview figure (vector source)
 │   └── overview.png                         # Overview figure (rendered)
 ├── MobileGUI-VBench/                        # MobileGUI-VBench benchmark dataset
+│   ├── evaluation_framework.pdf             #   Evaluation framework report
+│   ├── MobileGUI-VBench_table.md            #   Full benchmark comparison table
 │   ├── MobileGUI-VBench.jsonl               #   Task data (JSONL format)
 │   ├── MobileGUI-VBench.xlsx                #   Task data (Excel format)
 │   ├── MobileGUI-VBench-Doc.md              #   Dataset documentation (English)
