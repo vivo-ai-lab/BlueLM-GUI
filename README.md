@@ -64,7 +64,7 @@ Key features:
 - Explicit, implicit, and ambiguous instruction types
 - 77 distinct function points across 13 annotated dimensions
 
-> 📄 See [MobileGUI-VBench/](MobileGUI-VBench/) for the full dataset and [documentation](MobileGUI-VBench/MobileGUI-VBench-Doc.md).
+> 📄 See [MobileGUI-VBench/](MobileGUI-VBench/) for the full dataset and [documentation](MobileGUI-VBench/MobileGUI-VBench-Doc.md). The dataset is also available on Hugging Face: [vivo-ai/MobileGUI-VBench](https://huggingface.co/datasets/vivo-ai/MobileGUI-VBench).
 
 ### 2. AndroidWorld (Public)
 
