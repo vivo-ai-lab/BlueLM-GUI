@@ -60,7 +60,7 @@ This repository includes two benchmarks for evaluating mobile GUI agents:
 **MobileGUI-VBench** is a comprehensive benchmark built by vivo AI Lab for evaluating mobile GUI agent capabilities. It covers **150 tasks** across **40 real-world mobile apps** and **8 scenario categories** (Social & Communication, Video Streaming, Shopping & Deals, Travel & Transit, Music & Radio, Navigation, Lifestyle Services, and News & Reading).
 
 Key features:
-- Single-app and cross-app tasks (142 single-app, 8 cross-app)
+- Single-app and cross-app tasks (140 single-app, 10 cross-app)
 - Single-intent and multi-intent tasks with varying chain complexity (simple / medium / complex)
 - Explicit, implicit, and ambiguous instruction types
 - 77 distinct function points across 13 annotated dimensions
