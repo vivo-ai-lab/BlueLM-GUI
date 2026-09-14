@@ -3,6 +3,7 @@
 **MobileGUI-VBench** is a comprehensive benchmark built by **vivo AI Lab** for evaluating mobile GUI agent capabilities. It is part of the [BlueLM-GUI](https://github.com/vivo-ai/BlueLM-GUI) project — a real-device-centric flywheel for self-improving mobile GUI agents.
 
 [![Hugging Face](https://img.shields.io/badge/Hugging%20Face-MobileGUI--VBench-orange.svg)](https://huggingface.co/datasets/vivo-ai/MobileGUI-VBench)
+[![GitHub](https://img.shields.io/badge/GitHub-vivo--ai%2FBlueLM--GUI-181717.svg)](https://github.com/vivo-ai/BlueLM-GUI/tree/main/MobileGUI-VBench)
 [![License](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](../LICENSE)
 
 ## Overview
