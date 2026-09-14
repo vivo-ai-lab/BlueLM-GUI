@@ -5,8 +5,8 @@
 <img src="assets/overview.png" alt="BlueLM-GUI Overview" width="800">
 
 [![arXiv](https://img.shields.io/badge/arXiv-2609.12394-b31b1b.svg)](https://arxiv.org/abs/2609.12394)
-[![License](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](LICENSE)
 [![Hugging Face](https://img.shields.io/badge/Hugging%20Face-MobileGUI--VBench-orange.svg)](https://huggingface.co/datasets/vivo-ai/MobileGUI-VBench)
+[![License](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](LICENSE)
 
 **vivo AI Lab**
 
