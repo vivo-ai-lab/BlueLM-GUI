@@ -15,8 +15,7 @@ BlueLM-GUI is a multimodal GUI agent developed by **vivo AI Lab**, capable of un
 
 ## 📰 News
 
-- **[2026.09]** We release the technical report, benchmark datasets, and evaluation framework.
-- **[2026.09]** BlueLM-GUI achieves **87.4%** on MobileGUI-VBench and **84.9%** on AndroidWorld.
+- **[2026.09]** We release the technical report, benchmark datasets, and evaluation framework, alongside BlueLM-GUI achieving 87.4% on MobileGUI-VBench and 84.9% on AndroidWorld.
 
 ## 🏆 Benchmark Results
 
