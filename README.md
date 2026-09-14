@@ -86,9 +86,7 @@ BlueLM-GUI/
 │   ├── MobileGUI-VBench_table.md            #   Full benchmark comparison table
 │   ├── MobileGUI-VBench.jsonl               #   Task data (JSONL format)
 │   ├── MobileGUI-VBench.xlsx                #   Task data (Excel format)
-│   ├── MobileGUI-VBench-Doc.md              #   Dataset documentation (English)
 │   ├── MobileGUI-VBench-Doc.html            #   Interactive documentation (English)
-│   ├── MobileGUI-VBench-说明文档.md          #   Dataset documentation (中文)
 │   └── MobileGUI-VBench-说明文档.html        #   Interactive documentation (中文)
 └── AndroidWorld/                            # AndroidWorld evaluation framework
     ├── main.py                              #   Evaluation entry point
