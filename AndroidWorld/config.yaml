@@ -1,0 +1,58 @@
+# =============================================================================
+# 动态评测配置
+# =============================================================================
+
+# ---------- 模型（vLLM 以独立进程启动，见 start_vllm.sh）----------
+model:
+  api_url: http://localhost:10005/v1
+  name: ""
+  timeout: 300
+
+# ---------- 推理参数（评测用贪心解码）----------
+sampling:
+  temperature: 0.0
+  top_p: 1.0
+  top_k: -1
+  max_tokens: 2048
+  skip_special_tokens: false
+  enable_thinking: true
+
+# ---------- 并发控制 ----------
+# vLLM 并发请求数量（独立于模拟器端口数，按模型吞吐能力单独设置）
+concurrency:
+  vllm: 16
+  emulator: -1
+
+# ---------- 数据（通过模拟器接口动态获取）----------
+data:
+  seed: 42
+  max_index: -1
+  max_retries: 3
+  timeout: 240
+  max_samples: -1
+
+# ---------- 模拟器（Android AVD）----------
+emulator:
+  host: http://xx.xx.xx.xxx
+  port_min: 5009
+  port_max: 5025
+  port_step: 1
+  timeout: 240
+  max_retry: 3
+
+# ---------- Agent 交互 ----------
+agent:
+  system_prompt: gui.md
+  use_dynamic_turns: false
+  complexity_multiplier: 10.0
+  min_turns: 5
+  max_turns: 50
+  img_win: 5
+  max_consecutive_parse_fail: 3
+  connect_max_retry: 10
+
+# ---------- 输出 ----------
+output:
+  dir: output
+  exp_name: rl
+  save_screenshots: true

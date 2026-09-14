@@ -1,0 +1,380 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>MobileGUI-VBench 数据集说明文档</title>
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.4/dist/chart.umd.min.js"></script>
+<style>
+  :root{
+    --primary:#4e79a7;
+    --bg:#f6f8fb;
+    --card:#ffffff;
+    --text:#2c3e50;
+    --border:#e3e8ee;
+  }
+  *{box-sizing:border-box;}
+  body{
+    margin:0;
+    font-family:"PingFang SC","Microsoft YaHei",Helvetica,Arial,sans-serif;
+    background:var(--bg);
+    color:var(--text);
+    line-height:1.6;
+  }
+  header{
+    background:linear-gradient(135deg,#4e79a7,#59a14f);
+    color:#fff;
+    padding:48px 24px 64px;
+    text-align:center;
+  }
+  header h1{margin:0 0 8px;font-size:2rem;}
+  header p{margin:0;opacity:.9;font-size:1rem;}
+  .container{
+    max-width:1160px;
+    margin:0 auto;
+    padding:24px;
+  }
+  .kpi-grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(180px,1fr));
+    gap:16px;
+    max-width:900px;
+    margin:-32px auto 32px;
+    padding:0 24px;
+  }
+  .kpi-card{
+    background:var(--card);
+    border-radius:12px;
+    padding:20px;
+    text-align:center;
+    box-shadow:0 4px 16px rgba(0,0,0,.08);
+  }
+  .kpi-card .num{font-size:2.1rem;font-weight:700;color:var(--primary);}
+  .kpi-card .label{font-size:.9rem;color:#666;margin-top:4px;}
+  section{
+    background:var(--card);
+    border-radius:12px;
+    padding:28px;
+    margin-bottom:24px;
+    box-shadow:0 2px 10px rgba(0,0,0,.05);
+  }
+  section h2{
+    margin-top:0;
+    font-size:1.35rem;
+    border-left:5px solid var(--primary);
+    padding-left:12px;
+  }
+  table{
+    width:100%;
+    border-collapse:collapse;
+    margin-top:12px;
+    font-size:.92rem;
+  }
+  th,td{
+    border:1px solid var(--border);
+    padding:8px 12px;
+    text-align:left;
+  }
+  th{background:#eef2f7;}
+  tr:nth-child(even){background:#fafcff;}
+  .chart-wrap{
+    position:relative;
+    height:340px;
+    margin-top:16px;
+  }
+  .chart-wrap.tall{height:460px;}
+  .grid-2{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:24px;
+  }
+  @media (max-width:800px){
+    .grid-2{grid-template-columns:1fr;}
+  }
+  .note{
+    font-size:.88rem;
+    color:#777;
+    margin-top:8px;
+  }
+  footer{
+    text-align:center;
+    color:#999;
+    font-size:.85rem;
+    padding:24px;
+  }
+  code{
+    background:#eef2f7;
+    padding:2px 6px;
+    border-radius:4px;
+    font-size:.9em;
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <h1>MobileGUI-VBench 数据集说明文档</h1>
+  <p>移动端 GUI Agent 能力评测基准 · 数据统计与可视化</p>
+</header>
+
+<div class="kpi-grid">
+  <div class="kpi-card"><div class="num">150</div><div class="label">题目总数</div></div>
+  <div class="kpi-card"><div class="num">40</div><div class="label">涉及 App 种类</div></div>
+  <div class="kpi-card"><div class="num">8</div><div class="label">场景分类数</div></div>
+</div>
+
+<div class="container">
+
+  <section>
+    <h2>1. 概述</h2>
+    <p><strong>MobileGUI-VBench</strong> 是一份面向移动端 GUI Agent 能力评测的基准测试题集，覆盖社交通讯、音乐电台、视频播放、购物优惠、旅游出行、交通导航、便捷生活、资讯阅读等多个真实生活场景，涵盖单应用与跨应用、单意图与多意图、显性指令与隐含意图指令等多种任务形态，用于评估 Agent 在真实手机 App 环境下的指令理解与执行能力。</p>
+    <p>数据文件：<code>MobileGUI-VBench.xlsx</code>（完整标注）、<code>MobileGUI-VBench.jsonl</code>（精简字段）</p>
+  </section>
+
+  <section>
+    <h2>2. 字段（列）说明</h2>
+    <table>
+      <tr><th>列名</th><th>说明</th></tr>
+      <tr><td>TASK_ID</td><td>任务唯一编号</td></tr>
+      <tr><td>指令</td><td>用户原始查询/指令文本</td></tr>
+      <tr><td>场景分类</td><td>任务所属场景大类（社交通讯、音乐电台、视频播放等）</td></tr>
+      <tr><td>APP</td><td>任务涉及的应用名称，多个应用以「、」分隔</td></tr>
+      <tr><td>指令类型</td><td>Agent执行类 / Agent-User交互类</td></tr>
+      <tr><td>链路复杂度</td><td>简单 / 中等 / 复杂</td></tr>
+      <tr><td>操作类型</td><td>基础操作 / 进阶操作</td></tr>
+      <tr><td>指令清晰度</td><td>显性指令 / 隐含意图指令 / 模糊指令</td></tr>
+      <tr><td>意图情况</td><td>单意图 / 有依赖多意图 / 无依赖多意图</td></tr>
+      <tr><td>功能点</td><td>该任务测试的具体功能点（如"搜索""商品查询""观看视频"等）</td></tr>
+      <tr><td>前置条件</td><td>完成任务所需的前置状态或环境准备</td></tr>
+      <tr><td>环境预设</td><td>具体的环境搭建操作路径（部分任务提供）</td></tr>
+      <tr><td>理想澄清</td><td>期望 Agent 与用户澄清的方式（多用于 Agent-User 交互类任务）</td></tr>
+    </table>
+  </section>
+
+  <section>
+    <h2>3. 标签定义</h2>
+    <p>本节对 MobileGUI-VBench 使用的多维度标签进行定义说明，作为任务标注与结果分析的判定依据。标签体系共包含 <strong>6 个分类维度</strong>（指令类型 / 链路复杂度 / 应用范围 / 操作类型 / 指令清晰度 / 意图情况）和 <strong>2 个辅助字段</strong>（前置条件 / 理想澄清）。</p>
+
+    <h3 style="margin-top:24px;color:var(--primary);">3.1 指令类型</h3>
+    <table>
+      <tr><th>标签</th><th>定义</th><th>示例</th></tr>
+      <tr><td>Agent执行类</td><td>指令信息完整、目标明确，Agent 可直接执行无需追问用户</td><td>"帮我把QQ状态换成忙碌"</td></tr>
+      <tr><td>Agent-User交互类</td><td>指令信息不足或存在多种合理执行路径，期望 Agent 主动向用户澄清后再执行</td><td>"把我的QQ状态换成别的"（需澄清换成哪种状态）</td></tr>
+    </table>
+
+    <h3 style="margin-top:24px;color:var(--primary);">3.2 链路复杂度</h3>
+    <p>按完成该任务所需的<strong>预估操作步数</strong>划分（一次点击/输入/滑动计为一步）：</p>
+    <table>
+      <tr><th>标签</th><th>定义</th><th>示例</th></tr>
+      <tr><td>简单</td><td>≤ 5 步即可完成</td><td>"打开网易云音乐"</td></tr>
+      <tr><td>中等</td><td>6 ~ 10 步</td><td>"在B站搜索科技类视频并播放"</td></tr>
+      <tr><td>复杂</td><td>&gt; 10 步，或涉及多页面深度跳转</td><td>"在小红书找到评分最高的咖啡店并收藏笔记"</td></tr>
+    </table>
+
+    <h3 style="margin-top:24px;color:var(--primary);">3.3 应用范围</h3>
+    <table>
+      <tr><th>标签</th><th>定义</th><th>示例</th></tr>
+      <tr><td>单应用</td><td>任务全程在单个 App 内完成</td><td>"在QQ音乐中播放我喜欢的歌曲"</td></tr>
+      <tr><td>跨应用</td><td>任务需要在 ≥2 个 App 之间切换或数据流转</td><td>"把微信里朋友发的定位在高德地图中打开"</td></tr>
+    </table>
+
+    <h3 style="margin-top:24px;color:var(--primary);">3.4 操作类型</h3>
+    <table>
+      <tr><th>标签</th><th>定义</th><th>涉及的基础 UI 动作</th></tr>
+      <tr><td>基础操作</td><td>仅使用最常见的 GUI 交互</td><td>点击、文本输入</td></tr>
+      <tr><td>进阶操作</td><td>涉及更复杂的手势或控件操作</td><td>滑动、拖拽、长按、双击、缩放、滚动定位</td></tr>
+    </table>
+
+    <h3 style="margin-top:24px;color:var(--primary);">3.5 指令清晰度</h3>
+    <table>
+      <tr><th>标签</th><th>定义</th><th>示例</th></tr>
+      <tr><td>显性指令</td><td>指令中明确给出对象、动作、参数等关键信息，无需推断</td><td>"把微信里张三的聊天置顶"</td></tr>
+      <tr><td>隐含意图指令</td><td>指令未明确说出真实意图，Agent 需要基于常识或上下文推断</td><td>"好久没上QQ了，看看朋友们最近都在发些什么动态"（隐含意图：查看好友动态）</td></tr>
+      <tr><td>模糊指令</td><td>指令缺少关键参数、或存在多种合理解读，Agent 需进一步澄清</td><td>"帮我搜一下那个电影"（需澄清：哪部电影？在哪个平台搜？）</td></tr>
+    </table>
+
+    <h3 style="margin-top:24px;color:var(--primary);">3.6 意图情况</h3>
+    <table>
+      <tr><th>标签</th><th>定义</th><th>示例</th></tr>
+      <tr><td>单意图</td><td>一条指令只包含一个独立任务</td><td>"打开网易云音乐播放我喜欢的歌单"</td></tr>
+      <tr><td>有依赖多意图</td><td>一条指令包含多个任务，且任务间存在<strong>条件依赖</strong>或<strong>数据传递</strong>关系（必须先完成 A 才能完成 B）</td><td>"在高德地图搜附近的火锅店，然后把最近一家发给微信里的张三"（B 依赖 A 的结果）</td></tr>
+      <tr><td>无依赖多意图</td><td>一条指令包含多个任务，但任务间相互独立、可并行执行</td><td>"把QQ状态换成忙碌，同时打开网易云音乐"</td></tr>
+    </table>
+
+    <h3 style="margin-top:24px;color:var(--primary);">3.7 前置条件（precondition）</h3>
+    <p>执行任务前需要满足的<strong>环境状态或账户状态</strong>。该字段为空表示任务无特殊前置要求。</p>
+    <p><strong>示例</strong>：</p>
+    <ul>
+      <li>"QQ状态当前不为忙碌"（用于"把QQ状态换成别的"任务，否则变更无意义）</li>
+      <li>"用户已登录抖音账号"</li>
+      <li>"已开启定位权限"</li>
+    </ul>
+
+    <h3 style="margin-top:24px;color:var(--primary);">3.8 理想澄清（clarification_requirement）</h3>
+    <p>针对 <strong>Agent-User 交互类</strong>任务，期望 Agent 主动向用户发起的澄清问题或确认行为。该字段是评估 Agent 主动交互能力的核心依据。</p>
+    <p><strong>示例</strong>：</p>
+    <ul>
+      <li>"询问哪个（任意一个）"——对应"把我的QQ状态换成别的"</li>
+      <li>"确认目的地是家还是公司"——对应"导航回家"</li>
+      <li>"询问出发日期"——对应"帮我订一张去北京的高铁票"</li>
+    </ul>
+  </section>
+
+  <section>
+    <h2>4. 场景分类分布</h2>
+    <div class="grid-2">
+      <div class="chart-wrap"><canvas id="chartScenario"></canvas></div>
+      <table>
+        <tr><th>场景分类</th><th>数量</th><th>占比</th></tr>
+        <tr><td>视频播放</td><td>24</td><td>16.0%</td></tr>
+        <tr><td>购物优惠</td><td>24</td><td>16.0%</td></tr>
+        <tr><td>便捷生活</td><td>23</td><td>15.3%</td></tr>
+        <tr><td>社交通讯</td><td>21</td><td>14.0%</td></tr>
+        <tr><td>旅游出行</td><td>18</td><td>12.0%</td></tr>
+        <tr><td>音乐电台</td><td>17</td><td>11.3%</td></tr>
+        <tr><td>交通导航</td><td>17</td><td>11.3%</td></tr>
+        <tr><td>资讯阅读</td><td>6</td><td>4.0%</td></tr>
+      </table>
+    </div>
+  </section>
+
+  <section>
+    <h2>5. APP 分布</h2>
+    <p>数据集共涉及 <strong>40</strong> 种 App。一条任务可能涉及多个 App，因此各 App 出现总次数大于题目数（150）。</p>
+    <div class="chart-wrap tall"><canvas id="chartApp"></canvas></div>
+    <p class="note">图中展示全部 40 种 App 的出现频次，按次数从高到低排序。</p>
+  </section>
+
+  <section>
+    <h2>6. 指令类型分布</h2>
+    <div class="grid-2">
+      <div class="chart-wrap"><canvas id="chartInstrType"></canvas></div>
+      <table>
+        <tr><th>指令类型</th><th>数量</th><th>占比</th></tr>
+        <tr><td>Agent执行类</td><td>91</td><td>60.7%</td></tr>
+        <tr><td>Agent-User交互类</td><td>59</td><td>39.3%</td></tr>
+      </table>
+    </div>
+  </section>
+
+  <section>
+    <h2>7. 链路复杂度分布</h2>
+    <div class="grid-2">
+      <div class="chart-wrap"><canvas id="chartComplexity"></canvas></div>
+      <table>
+        <tr><th>链路复杂度</th><th>数量</th><th>占比</th></tr>
+        <tr><td>中等</td><td>90</td><td>60.0%</td></tr>
+        <tr><td>简单</td><td>36</td><td>24.0%</td></tr>
+        <tr><td>复杂</td><td>24</td><td>16.0%</td></tr>
+      </table>
+    </div>
+  </section>
+
+  <section>
+    <h2>8. 操作类型分布</h2>
+    <div class="grid-2">
+      <div class="chart-wrap"><canvas id="chartOpType"></canvas></div>
+      <table>
+        <tr><th>操作类型</th><th>数量</th><th>占比</th></tr>
+        <tr><td>基础操作</td><td>123</td><td>82.0%</td></tr>
+        <tr><td>进阶操作</td><td>27</td><td>18.0%</td></tr>
+      </table>
+    </div>
+  </section>
+
+  <section>
+    <h2>9. 指令清晰度分布</h2>
+    <div class="grid-2">
+      <div class="chart-wrap"><canvas id="chartClarity"></canvas></div>
+      <table>
+        <tr><th>指令清晰度</th><th>数量</th><th>占比</th></tr>
+        <tr><td>显性指令</td><td>76</td><td>50.7%</td></tr>
+        <tr><td>隐含意图指令</td><td>67</td><td>44.7%</td></tr>
+        <tr><td>模糊指令</td><td>7</td><td>4.7%</td></tr>
+      </table>
+    </div>
+  </section>
+
+  <section>
+    <h2>10. 意图情况分布</h2>
+    <div class="grid-2">
+      <div class="chart-wrap"><canvas id="chartIntent"></canvas></div>
+      <table>
+        <tr><th>意图情况</th><th>数量</th><th>占比</th></tr>
+        <tr><td>单意图</td><td>93</td><td>62.0%</td></tr>
+        <tr><td>有依赖多意图</td><td>49</td><td>32.7%</td></tr>
+        <tr><td>无依赖多意图</td><td>8</td><td>5.3%</td></tr>
+      </table>
+    </div>
+  </section>
+
+  <section>
+    <h2>11. 功能点分布（Top 15，共 77 种）</h2>
+    <div class="chart-wrap"><canvas id="chartFuncPoint"></canvas></div>
+    <p class="note">功能点种类丰富（共 77 种），图中仅展示出现频次最高的 15 种，其余多为出现 1～2 次的长尾细分场景。</p>
+  </section>
+
+  <section>
+    <h2>12. 小结</h2>
+    <p>MobileGUI-VBench 数据集共 150 条任务，覆盖 40 种主流移动应用及 8 大生活场景，任务设计兼顾单应用与跨应用协同、单意图与多意图链路、显性指令与隐含/模糊意图理解等多维度能力考察，可用于全面评估移动端 GUI Agent 的场景泛化能力与复杂指令理解执行能力。</p>
+  </section>
+
+</div>
+
+<footer>MobileGUI-VBench 数据集说明文档 &middot; 数据来源：MobileGUI-VBench.xlsx</footer>
+
+<script>
+const palette = ['#4e79a7','#f28e2b','#e15759','#76b7b2','#59a14f','#edc948','#b07aa1','#ff9da7','#9c755f','#bab0ac','#86BCB6','#A0CBE8','#F1CE63','#FF9D9A','#79706E','#D37295','#8CD17D','#B6992D','#4A79A4','#F1CE63','#FFBE7D'];
+
+function makePie(id, labels, data){
+  new Chart(document.getElementById(id), {
+    type:'doughnut',
+    data:{ labels, datasets:[{ data, backgroundColor: palette, borderColor:'#fff', borderWidth:2 }] },
+    options:{ responsive:true, maintainAspectRatio:false,
+      plugins:{ legend:{ position:'right' } } }
+  });
+}
+function makeBar(id, labels, data, horizontal){
+  new Chart(document.getElementById(id), {
+    type:'bar',
+    data:{ labels, datasets:[{ data, backgroundColor: palette.slice(0, labels.length), borderColor:'#fff', borderWidth:1 }] },
+    options:{
+      responsive:true, maintainAspectRatio:false,
+      indexAxis: horizontal ? 'y' : 'x',
+      plugins:{ legend:{ display:false } },
+      scales:{ x:{ beginAtZero:true }, y:{ beginAtZero:true } }
+    }
+  });
+}
+
+makePie('chartScenario',
+  ['视频播放','购物优惠','便捷生活','社交通讯','旅游出行','音乐电台','交通导航','资讯阅读'],
+  [24,24,23,21,18,17,17,6]);
+
+makeBar('chartApp',
+  ['QQ','网易云音乐','小红书','哔哩哔哩','滴滴出行','高德地图','抖音','朴朴超市','去哪儿旅行','携程旅行','铁路12306','微博','优酷视频',
+   'QQ音乐','爱奇艺','百度地图','大麦','得物','淘宝闪购','京东','酷狗音乐','美团','美团外卖','拼多多','淘宝','腾讯地图','腾讯视频','同程旅行','闲鱼',
+   '相册','QQ邮箱','喜马拉雅','豆瓣','知乎','番茄免费小说','盒马','瑞幸咖啡','腾讯新闻','芒果TV','今日头条'],
+  [6,6,6,5,5,5,5,5,5,5,5,5,5,
+   4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,
+   3,3,3,3,3,3,2,2,2,1,1],
+  true);
+
+makePie('chartInstrType', ['Agent执行类','Agent-User交互类'], [91,59]);
+
+makeBar('chartComplexity', ['简单','中等','复杂'], [36,90,24]);
+
+makePie('chartOpType', ['基础操作','进阶操作'], [123,27]);
+
+makeBar('chartClarity', ['显性指令','隐含意图指令','模糊指令'], [76,67,7]);
+
+makeBar('chartIntent', ['单意图','有依赖多意图','无依赖多意图'], [93,49,8]);
+
+makeBar('chartFuncPoint',
+  ['商品查询','搜索','观看视频','查看收藏','店铺查询','单曲/专辑播放','评论/回复','票务服务','外卖订购','实时打车','预约打车','查看订单','优惠券查询','酒店查询','订阅/加追'],
+  [11,7,7,5,5,4,4,4,4,3,3,3,3,3,3],
+  true);
+</script>
+
+</body>
+</html>

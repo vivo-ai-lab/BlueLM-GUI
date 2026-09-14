@@ -1,0 +1,380 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>MobileGUI-VBench Dataset Documentation</title>
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.4/dist/chart.umd.min.js"></script>
+<style>
+  :root{
+    --primary:#4e79a7;
+    --bg:#f6f8fb;
+    --card:#ffffff;
+    --text:#2c3e50;
+    --border:#e3e8ee;
+  }
+  *{box-sizing:border-box;}
+  body{
+    margin:0;
+    font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Helvetica,Arial,sans-serif;
+    background:var(--bg);
+    color:var(--text);
+    line-height:1.6;
+  }
+  header{
+    background:linear-gradient(135deg,#4e79a7,#59a14f);
+    color:#fff;
+    padding:48px 24px 64px;
+    text-align:center;
+  }
+  header h1{margin:0 0 8px;font-size:2rem;}
+  header p{margin:0;opacity:.9;font-size:1rem;}
+  .container{
+    max-width:1160px;
+    margin:0 auto;
+    padding:24px;
+  }
+  .kpi-grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(180px,1fr));
+    gap:16px;
+    max-width:900px;
+    margin:-32px auto 32px;
+    padding:0 24px;
+  }
+  .kpi-card{
+    background:var(--card);
+    border-radius:12px;
+    padding:20px;
+    text-align:center;
+    box-shadow:0 4px 16px rgba(0,0,0,.08);
+  }
+  .kpi-card .num{font-size:2.1rem;font-weight:700;color:var(--primary);}
+  .kpi-card .label{font-size:.9rem;color:#666;margin-top:4px;}
+  section{
+    background:var(--card);
+    border-radius:12px;
+    padding:28px;
+    margin-bottom:24px;
+    box-shadow:0 2px 10px rgba(0,0,0,.05);
+  }
+  section h2{
+    margin-top:0;
+    font-size:1.35rem;
+    border-left:5px solid var(--primary);
+    padding-left:12px;
+  }
+  table{
+    width:100%;
+    border-collapse:collapse;
+    margin-top:12px;
+    font-size:.92rem;
+  }
+  th,td{
+    border:1px solid var(--border);
+    padding:8px 12px;
+    text-align:left;
+  }
+  th{background:#eef2f7;}
+  tr:nth-child(even){background:#fafcff;}
+  .chart-wrap{
+    position:relative;
+    height:340px;
+    margin-top:16px;
+  }
+  .chart-wrap.tall{height:460px;}
+  .grid-2{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:24px;
+  }
+  @media (max-width:800px){
+    .grid-2{grid-template-columns:1fr;}
+  }
+  .note{
+    font-size:.88rem;
+    color:#777;
+    margin-top:8px;
+  }
+  footer{
+    text-align:center;
+    color:#999;
+    font-size:.85rem;
+    padding:24px;
+  }
+  code{
+    background:#eef2f7;
+    padding:2px 6px;
+    border-radius:4px;
+    font-size:.9em;
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <h1>MobileGUI-VBench Dataset Documentation</h1>
+  <p>A Benchmark for Mobile GUI Agent Evaluation · Statistics &amp; Visualization</p>
+</header>
+
+<div class="kpi-grid">
+  <div class="kpi-card"><div class="num">150</div><div class="label">Total Tasks</div></div>
+  <div class="kpi-card"><div class="num">40</div><div class="label">Unique Apps</div></div>
+  <div class="kpi-card"><div class="num">8</div><div class="label">Scenario Categories</div></div>
+</div>
+
+<div class="container">
+
+  <section>
+    <h2>1. Overview</h2>
+    <p><strong>MobileGUI-VBench</strong> is a benchmark suite for evaluating mobile GUI Agent capabilities. It covers a wide range of real-world scenarios including Social &amp; Communication, Music &amp; Radio, Video Streaming, Shopping &amp; Deals, Travel &amp; Transit, Navigation, Lifestyle Services, and News &amp; Reading. The benchmark encompasses single-app and cross-app tasks, single-intent and multi-intent tasks, explicit instructions and implicit-intent instructions, and is designed to evaluate an Agent's instruction comprehension and execution capability in real mobile app environments.</p>
+    <p>Data files: <code>MobileGUI-VBench.xlsx</code> (full annotations), <code>MobileGUI-VBench.jsonl</code> (reduced field set)</p>
+  </section>
+
+  <section>
+    <h2>2. Column Descriptions</h2>
+    <table>
+      <tr><th>Column</th><th>Description</th></tr>
+      <tr><td>TASK_ID</td><td>Unique task identifier</td></tr>
+      <tr><td>Instruction</td><td>Raw user query / instruction text</td></tr>
+      <tr><td>Scenario Category</td><td>Task scenario category (e.g., Social &amp; Communication, Music &amp; Radio, Video Streaming)</td></tr>
+      <tr><td>APP</td><td>App(s) involved in the task, multiple apps separated by 「、」</td></tr>
+      <tr><td>Instruction Type</td><td>Agent-Execution / Agent-User Interaction</td></tr>
+      <tr><td>Chain Complexity</td><td>Simple / Medium / Complex</td></tr>
+      <tr><td>Operation Type</td><td>Basic Operation / Advanced Operation</td></tr>
+      <tr><td>Instruction Clarity</td><td>Explicit Instruction / Implicit Intent Instruction / Ambiguous Instruction</td></tr>
+      <tr><td>Intent Composition</td><td>Single Intent / Dependent Multi-Intent / Independent Multi-Intent</td></tr>
+      <tr><td>Function Point</td><td>Specific functionality being tested (e.g., Search, Product Lookup, Watch Video)</td></tr>
+      <tr><td>Precondition</td><td>Required state or environment setup for task completion</td></tr>
+      <tr><td>Environment Preset</td><td>Specific environment setup steps (provided for some tasks)</td></tr>
+      <tr><td>Ideal Clarification</td><td>Expected clarification behavior from the Agent (mostly for Agent-User Interaction tasks)</td></tr>
+    </table>
+  </section>
+
+  <section>
+    <h2>3. Tag Definitions</h2>
+    <p>This section defines the multi-dimensional tags used in MobileGUI-VBench, serving as the criteria for task annotation and result analysis. The tag system consists of <strong>6 classification dimensions</strong> (Instruction Type / Chain Complexity / App Scope / Operation Type / Instruction Clarity / Intent Composition) and <strong>2 auxiliary fields</strong> (Precondition / Ideal Clarification).</p>
+
+    <h3 style="margin-top:24px;color:var(--primary);">3.1 Instruction Type</h3>
+    <table>
+      <tr><th>Tag</th><th>Definition</th><th>Example</th></tr>
+      <tr><td>Agent-Execution</td><td>The instruction is complete and unambiguous; the Agent can execute it directly without asking the user</td><td>"Set my QQ status to Busy"</td></tr>
+      <tr><td>Agent-User Interaction</td><td>The instruction lacks sufficient information or has multiple valid execution paths; the Agent is expected to proactively clarify with the user before executing</td><td>"Change my QQ status to something else" (needs clarification: to which status?)</td></tr>
+    </table>
+
+    <h3 style="margin-top:24px;color:var(--primary);">3.2 Chain Complexity</h3>
+    <p>Categorized by the <strong>estimated number of steps</strong> required to complete the task (each tap / input / swipe counts as one step):</p>
+    <table>
+      <tr><th>Tag</th><th>Definition</th><th>Example</th></tr>
+      <tr><td>Simple</td><td>Completable within ≤ 5 steps</td><td>"Open NetEase Cloud Music"</td></tr>
+      <tr><td>Medium</td><td>Requires 6 ~ 10 steps</td><td>"Search and play a tech video on Bilibili"</td></tr>
+      <tr><td>Complex</td><td>Requires &gt; 10 steps, or involves deep multi-page navigation</td><td>"Find the top-rated coffee shop on RED and save the post"</td></tr>
+    </table>
+
+    <h3 style="margin-top:24px;color:var(--primary);">3.3 App Scope</h3>
+    <table>
+      <tr><th>Tag</th><th>Definition</th><th>Example</th></tr>
+      <tr><td>Single-App</td><td>The task is completed entirely within one app</td><td>"Play my favorite songs in QQ Music"</td></tr>
+      <tr><td>Cross-App</td><td>The task requires switching between ≥ 2 apps or transferring data across apps</td><td>"Open in Amap the location my friend sent me in WeChat"</td></tr>
+    </table>
+
+    <h3 style="margin-top:24px;color:var(--primary);">3.4 Operation Type</h3>
+    <table>
+      <tr><th>Tag</th><th>Definition</th><th>UI Actions Involved</th></tr>
+      <tr><td>Basic Operation</td><td>Uses only the most common GUI interactions</td><td>Tap, text input</td></tr>
+      <tr><td>Advanced Operation</td><td>Involves more complex gestures or control manipulation</td><td>Swipe, drag, long-press, double-tap, pinch-zoom, scroll-targeting</td></tr>
+    </table>
+
+    <h3 style="margin-top:24px;color:var(--primary);">3.5 Instruction Clarity</h3>
+    <table>
+      <tr><th>Tag</th><th>Definition</th><th>Example</th></tr>
+      <tr><td>Explicit Instruction</td><td>The instruction clearly specifies the target, action, and parameters; no inference required</td><td>"Pin my chat with Zhang San in WeChat"</td></tr>
+      <tr><td>Implicit Intent Instruction</td><td>The instruction does not explicitly state the real intent; the Agent must infer it from common sense or context</td><td>"Haven't been on QQ for a while, see what my friends have been posting" (implicit intent: view friend feeds)</td></tr>
+      <tr><td>Ambiguous Instruction</td><td>The instruction lacks key parameters or has multiple valid interpretations; the Agent must clarify</td><td>"Help me search for that movie" (which movie? on which platform?)</td></tr>
+    </table>
+
+    <h3 style="margin-top:24px;color:var(--primary);">3.6 Intent Composition</h3>
+    <table>
+      <tr><th>Tag</th><th>Definition</th><th>Example</th></tr>
+      <tr><td>Single Intent</td><td>The instruction contains only one independent task</td><td>"Open NetEase Cloud Music and play my favorite playlist"</td></tr>
+      <tr><td>Dependent Multi-Intent</td><td>The instruction contains multiple tasks with <strong>conditional dependency</strong> or <strong>data passing</strong> between them (B requires the result of A)</td><td>"Search for hotpot restaurants near me on Amap, then send the nearest one to Zhang San on WeChat" (B depends on A's output)</td></tr>
+      <tr><td>Independent Multi-Intent</td><td>The instruction contains multiple tasks that are independent and can be executed in parallel</td><td>"Set my QQ status to Busy, and also open NetEase Cloud Music"</td></tr>
+    </table>
+
+    <h3 style="margin-top:24px;color:var(--primary);">3.7 Precondition</h3>
+    <p>The <strong>environment state or account state</strong> required before executing the task. An empty field means no special precondition is needed.</p>
+    <p><strong>Examples</strong>:</p>
+    <ul>
+      <li>"Current QQ status is not Busy" (for the task "Change my QQ status to something else" — otherwise the change would be meaningless)</li>
+      <li>"User is logged in to Douyin"</li>
+      <li>"Location permission is enabled"</li>
+    </ul>
+
+    <h3 style="margin-top:24px;color:var(--primary);">3.8 Ideal Clarification</h3>
+    <p>For <strong>Agent-User Interaction</strong> tasks, this field defines the clarification or confirmation behavior the Agent is expected to proactively initiate. It is the core basis for evaluating the Agent's proactive interaction capability.</p>
+    <p><strong>Examples</strong>:</p>
+    <ul>
+      <li>"Ask which one (any one)" — for "Change my QQ status to something else"</li>
+      <li>"Confirm whether the destination is home or work" — for "Navigate home"</li>
+      <li>"Ask for the departure date" — for "Book me a high-speed train ticket to Beijing"</li>
+    </ul>
+  </section>
+
+  <section>
+    <h2>4. Scenario Category Distribution</h2>
+    <div class="grid-2">
+      <div class="chart-wrap"><canvas id="chartScenario"></canvas></div>
+      <table>
+        <tr><th>Scenario Category</th><th>Count</th><th>Percentage</th></tr>
+        <tr><td>Video Streaming</td><td>24</td><td>16.0%</td></tr>
+        <tr><td>Shopping &amp; Deals</td><td>24</td><td>16.0%</td></tr>
+        <tr><td>Lifestyle Services</td><td>23</td><td>15.3%</td></tr>
+        <tr><td>Social &amp; Communication</td><td>21</td><td>14.0%</td></tr>
+        <tr><td>Travel &amp; Transit</td><td>18</td><td>12.0%</td></tr>
+        <tr><td>Music &amp; Radio</td><td>17</td><td>11.3%</td></tr>
+        <tr><td>Navigation</td><td>17</td><td>11.3%</td></tr>
+        <tr><td>News &amp; Reading</td><td>6</td><td>4.0%</td></tr>
+      </table>
+    </div>
+  </section>
+
+  <section>
+    <h2>5. App Distribution</h2>
+    <p>The dataset involves <strong>40</strong> unique apps. A single task may involve multiple apps, so the total count of app occurrences exceeds the number of tasks (150).</p>
+    <div class="chart-wrap tall"><canvas id="chartApp"></canvas></div>
+    <p class="note">All 40 apps shown, sorted by occurrence frequency (descending).</p>
+  </section>
+
+  <section>
+    <h2>6. Instruction Type Distribution</h2>
+    <div class="grid-2">
+      <div class="chart-wrap"><canvas id="chartInstrType"></canvas></div>
+      <table>
+        <tr><th>Instruction Type</th><th>Count</th><th>Percentage</th></tr>
+        <tr><td>Agent-Execution</td><td>91</td><td>60.7%</td></tr>
+        <tr><td>Agent-User Interaction</td><td>59</td><td>39.3%</td></tr>
+      </table>
+    </div>
+  </section>
+
+  <section>
+    <h2>7. Chain Complexity Distribution</h2>
+    <div class="grid-2">
+      <div class="chart-wrap"><canvas id="chartComplexity"></canvas></div>
+      <table>
+        <tr><th>Chain Complexity</th><th>Count</th><th>Percentage</th></tr>
+        <tr><td>Medium</td><td>90</td><td>60.0%</td></tr>
+        <tr><td>Simple</td><td>36</td><td>24.0%</td></tr>
+        <tr><td>Complex</td><td>24</td><td>16.0%</td></tr>
+      </table>
+    </div>
+  </section>
+
+  <section>
+    <h2>8. Operation Type Distribution</h2>
+    <div class="grid-2">
+      <div class="chart-wrap"><canvas id="chartOpType"></canvas></div>
+      <table>
+        <tr><th>Operation Type</th><th>Count</th><th>Percentage</th></tr>
+        <tr><td>Basic Operation</td><td>123</td><td>82.0%</td></tr>
+        <tr><td>Advanced Operation</td><td>27</td><td>18.0%</td></tr>
+      </table>
+    </div>
+  </section>
+
+  <section>
+    <h2>9. Instruction Clarity Distribution</h2>
+    <div class="grid-2">
+      <div class="chart-wrap"><canvas id="chartClarity"></canvas></div>
+      <table>
+        <tr><th>Instruction Clarity</th><th>Count</th><th>Percentage</th></tr>
+        <tr><td>Explicit Instruction</td><td>76</td><td>50.7%</td></tr>
+        <tr><td>Implicit Intent Instruction</td><td>67</td><td>44.7%</td></tr>
+        <tr><td>Ambiguous Instruction</td><td>7</td><td>4.7%</td></tr>
+      </table>
+    </div>
+  </section>
+
+  <section>
+    <h2>10. Intent Composition Distribution</h2>
+    <div class="grid-2">
+      <div class="chart-wrap"><canvas id="chartIntent"></canvas></div>
+      <table>
+        <tr><th>Intent Composition</th><th>Count</th><th>Percentage</th></tr>
+        <tr><td>Single Intent</td><td>93</td><td>62.0%</td></tr>
+        <tr><td>Dependent Multi-Intent</td><td>49</td><td>32.7%</td></tr>
+        <tr><td>Independent Multi-Intent</td><td>8</td><td>5.3%</td></tr>
+      </table>
+    </div>
+  </section>
+
+  <section>
+    <h2>11. Function Point Distribution (Top 15 of 77)</h2>
+    <div class="chart-wrap"><canvas id="chartFuncPoint"></canvas></div>
+    <p class="note">The function points are diverse (77 types in total). Only the top 15 by frequency are shown here. The remaining function points mostly appear 1&ndash;2 times, covering more granular long-tail operation scenarios.</p>
+  </section>
+
+  <section>
+    <h2>12. Summary</h2>
+    <p>The MobileGUI-VBench dataset contains 150 tasks across 40 mainstream mobile apps and 8 real-world scenario categories. The task design balances single-app and cross-app collaboration, single-intent and multi-intent workflows, and explicit, implicit, and ambiguous instruction comprehension, making it a comprehensive benchmark for evaluating the scenario generalization and complex instruction execution capabilities of mobile GUI Agents.</p>
+  </section>
+
+</div>
+
+<footer>MobileGUI-VBench Dataset Documentation &middot; Data source: MobileGUI-VBench.xlsx</footer>
+
+<script>
+const palette = ['#4e79a7','#f28e2b','#e15759','#76b7b2','#59a14f','#edc948','#b07aa1','#ff9da7','#9c755f','#bab0ac','#86BCB6','#A0CBE8','#F1CE63','#FF9D9A','#79706E','#D37295','#8CD17D','#B6992D','#4A79A4','#F1CE63','#FFBE7D'];
+
+function makePie(id, labels, data){
+  new Chart(document.getElementById(id), {
+    type:'doughnut',
+    data:{ labels, datasets:[{ data, backgroundColor: palette, borderColor:'#fff', borderWidth:2 }] },
+    options:{ responsive:true, maintainAspectRatio:false,
+      plugins:{ legend:{ position:'right' } } }
+  });
+}
+function makeBar(id, labels, data, horizontal){
+  new Chart(document.getElementById(id), {
+    type:'bar',
+    data:{ labels, datasets:[{ data, backgroundColor: palette.slice(0, labels.length), borderColor:'#fff', borderWidth:1 }] },
+    options:{
+      responsive:true, maintainAspectRatio:false,
+      indexAxis: horizontal ? 'y' : 'x',
+      plugins:{ legend:{ display:false } },
+      scales:{ x:{ beginAtZero:true }, y:{ beginAtZero:true } }
+    }
+  });
+}
+
+makePie('chartScenario',
+  ['Video Streaming','Shopping & Deals','Lifestyle Services','Social & Communication','Travel & Transit','Music & Radio','Navigation','News & Reading'],
+  [24,24,23,21,18,17,17,6]);
+
+makeBar('chartApp',
+  ['QQ','NetEase Music','RED','Bilibili','DiDi','Amap','Douyin','Pupu','Qunar','Ctrip','12306','Weibo','Youku',
+   'QQ Music','iQiyi','Baidu Maps','Damai','Dewu','TB Flash','JD','Kugou','Meituan','MT Waimai','Pinduoduo','Taobao','Tencent Maps','Tencent Video','Tongcheng','Xianyu',
+   'Gallery','QQ Mail','Ximalaya','Douban','Zhihu','Fanqie Novel','Hema','Luckin','Tencent News','MangoTV','Toutiao'],
+  [6,6,6,5,5,5,5,5,5,5,5,5,5,
+   4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,
+   3,3,3,3,3,3,2,2,2,1,1],
+  true);
+
+makePie('chartInstrType', ['Agent-Execution','Agent-User Interaction'], [91,59]);
+
+makeBar('chartComplexity', ['Simple','Medium','Complex'], [36,90,24]);
+
+makePie('chartOpType', ['Basic Operation','Advanced Operation'], [123,27]);
+
+makeBar('chartClarity', ['Explicit','Implicit','Ambiguous'], [76,67,7]);
+
+makeBar('chartIntent', ['Single Intent','Dependent Multi-Intent','Independent Multi-Intent'], [93,49,8]);
+
+makeBar('chartFuncPoint',
+  ['Product Lookup','Search','Watch Video','View Favorites','Store Lookup','Play Song/Album','Comment/Reply','Ticket Service','Food Delivery','Real-Time Ride','Scheduled Ride','View Orders','Coupon Lookup','Hotel Lookup','Subscribe/Follow'],
+  [11,7,7,5,5,4,4,4,4,3,3,3,3,3,3],
+  true);
+</script>
+
+</body>
+</html>

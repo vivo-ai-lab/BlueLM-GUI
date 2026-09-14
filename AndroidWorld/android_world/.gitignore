@@ -1,0 +1,36 @@
+# Compiled python modules.
+*.pyc
+
+# Byte-compiled
+_pycache__/
+.cache/
+
+# Poetry, setuptools, PyPI distribution artifacts.
+/*.egg-info
+.eggs/
+build/
+dist/
+poetry.lock
+
+# Tests
+.pytest_cache/
+
+# Type checking
+.pytype/
+
+# Other
+*.DS_Store
+
+# PyCharm
+.idea
+
+# Local test artifacts
+test_*.mp4
+test_avc1.mp4
+openh264-*.dll
+setup_real_device.py
+android_world/snapshots/
+
+# Large APK files - download separately, do not commit
+docker_setup/app_data/*.apk
+
